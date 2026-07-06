@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Museum Lobby — Indigo Museum</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="lobby">
+  <main class="lobby container">
+    <section class="lobby__intro">
+      <div class="eyebrow" data-anim="fade-slow">Welcome</div>
+      <h1 class="h-display" data-anim="blur-reveal">The Museum<br>Lobby</h1>
+      <p data-anim="fade-slow" data-anim-delay="1" style="margin: 1.6rem auto 0; color: var(--warm-gray); font-family: var(--font-serif); font-style: italic; font-size: 1.25rem;">
+        Please take your time. The exhibition unfolds slowly.
+      </p>
+    </section>
+
+    <section class="lobby__grid">
+      <button class="placard" data-anim="rise" data-anim-delay="1" id="openMap">
+        <div class="placard__num">I</div>
+        <div class="placard__title">Gallery Map</div>
+        <p class="placard__desc">See where each chapter lives — and where you are.</p>
+      </button>
+
+      <button class="placard" data-anim="rise" data-anim-delay="2" id="openTicket">
+        <div class="placard__num">II</div>
+        <div class="placard__title">Museum Ticket</div>
+        <p class="placard__desc">Your keepsake pass. Stamped at entry.</p>
+      </button>
+
+      <button class="placard" data-anim="rise" data-anim-delay="3" id="openGuide">
+        <div class="placard__num">III</div>
+        <div class="placard__title">Visitor Guide</div>
+        <p class="placard__desc">A short note before you enter the first hall.</p>
+      </button>
+
+      <button class="placard" data-anim="rise" data-anim-delay="4" id="openStamps">
+        <div class="placard__num">IV</div>
+        <div class="placard__title">Collection Stamps</div>
+        <p class="placard__desc">Seven stamps to collect across your journey.</p>
+      </button>
+
+      <a class="placard" data-anim="rise" data-anim-delay="5" href="gallery1.html" style="background: var(--navy); color: var(--paper);">
+        <div class="placard__num" style="color: var(--gold);">→</div>
+        <div class="placard__title" style="color: var(--paper);">Start Tour</div>
+        <p class="placard__desc" style="color: rgba(251,247,239,0.7);">Begin with Gallery 01 · The Beginning</p>
+      </a>
+    </section>
+
+    <section class="section-sm center">
+      <div class="eyebrow" style="margin-bottom:1rem;">Also On View</div>
+      <p style="margin: 0 auto;">
+        <a href="stickers.html" class="btn btn--ghost">Sticker Collection</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Map modal -->
+  <div class="modal" id="mapModal">
+    <div class="modal__panel" style="max-width:960px; padding: 1.5rem;">
+      <button class="modal__close" data-close>×</button>
+      <img src="assets/images/galleryMap.png" alt="Indigo Museum — Gallery Map floor plan" class="gallery-map-img" loading="lazy" decoding="async" style="width:100%; height:auto; display:block; touch-action: pinch-zoom;">
+      <!-- <p class="center" style="margin-top:1rem; color: var(--warm-gray); font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;">Click. Explore. Remember.</p> -->
+    </div>
+  </div>
+
+  <!-- Guide modal -->
+  <div class="modal" id="guideModal">
+    <div class="modal__panel">
+      <button class="modal__close" data-close>×</button>
+      <div class="eyebrow center" style="margin-bottom:1rem;">Visitor Guide</div>
+      <h2 class="h-section center" style="margin-bottom:1.6rem;">A note before you enter.</h2>
+      <div class="stack-lg" style="font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy);">
+        <p><em>1.</em> Move slowly. There is no rush.</p>
+        <p><em>2.</em> Hover objects marked with a magnifying cursor. They open.</p>
+        <p><em>3.</em> Each of the seven galleries awards a stamp on exit.</p>
+        <p><em>4.</em> Complete all seven to unlock a birthday letter.</p>
+        <p><em>5.</em> Leave a wish in the guestbook if you wish. The archive is public and permanent.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stamps modal -->
+  <div class="modal" id="stampsModal">
+    <div class="modal__panel">
+      <button class="modal__close" data-close>×</button>
+      <div class="eyebrow center" style="margin-bottom:1rem;">Your Collection</div>
+      <h2 class="h-section center" style="margin-bottom:1.6rem;">Stamp Collection</h2>
+      <div class="stamp-grid" id="stampsGrid"></div>
+      <p class="center" style="margin-top:1.6rem; color: var(--warm-gray); font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;">
+        Collect all seven to open the birthday letter.
+      </p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/stamps.js"></script>
+  <script src="js/ticket.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Build stamp grid
+      const grid = document.getElementById('stampsGrid');
+      Stamps.IDS.forEach((id) => {
+        const meta = Stamps.META[id];
+        const slot = document.createElement('div');
+        slot.className = 'stamp-slot';
+        slot.dataset.stampId = id;
+        slot.innerHTML = `
+          <span class="stamp-slot__num">${meta.num}</span>
+          ${Stamps.iconSVG(meta.icon, 46)}
+        `;
+        grid.appendChild(slot);
+      });
+      Stamps.paintCounter();
+
+      // Modal openers
+      const openers = {
+        openMap: 'mapModal',
+        openTicket: null,
+        openGuide: 'guideModal',
+        openStamps: 'stampsModal',
+      };
+      Object.entries(openers).forEach(([btnId, modalId]) => {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (btnId === 'openTicket') { Ticket.open(false); return; }
+          const modal = document.getElementById(modalId);
+          if (modal) modal.classList.add('open');
+        });
+      });
+
+      document.querySelectorAll('[data-close]').forEach((btn) => {
+        btn.addEventListener('click', () => btn.closest('.modal').classList.remove('open'));
+      });
+      document.querySelectorAll('.modal').forEach((m) => {
+        m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('open'); });
+      });
+
+      // First-visit ticket auto-open
+      Ticket.open(true);
+    });
+  </script>
+</body>
+</html>

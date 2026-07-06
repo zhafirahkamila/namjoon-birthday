@@ -1,0 +1,186 @@
+/* ==========================================================================
+   INDIGO MUSEUM — Responsive rules
+   Four-tier ladder:
+     Desktop 1440+   base rules live in style.css
+     Laptop  1024–1439   light density tune-up
+     Tablet  768–1023    hamburger nav, single-column chapters, timeline swipe
+     Mobile  ≤ 767       drawer + floating back, stacked ticket/guestbook,
+                         2-col stickers, slide-up Spotify
+   ========================================================================== */
+
+/* ---------- Laptop (up to 1439px) ---------- */
+@media (max-width: 1439px) {
+  .nav-inner { max-width: 1180px; }
+  .container { max-width: min(1180px, 92vw); }
+  .timeline__card { flex: 0 0 320px; }
+}
+
+/* ---------- Tablet (up to 1023px) ---------- */
+@media (max-width: 1023px) {
+  :root {
+    --gap-lg: 2.25rem;
+    --gap-xl: 4rem;
+  }
+
+  /* Collapse full desktop nav — hamburger + floating back take over. */
+  .site-nav,
+  .nav-btn--prev,
+  .nav-btn--next,
+  .nav-btn--back,
+  .stamp-pill { display: none; }
+  .nav-hamburger { display: flex; }
+  .floating-back { display: inline-flex; }
+
+  .brand__name { font-size: 0.95rem; letter-spacing: 0.2em; }
+
+  .lobby__grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
+
+  .gallery-chapter__grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .gallery-chapter__visual { aspect-ratio: 16/10; max-width: 640px; margin: 0 auto; }
+
+  .music-grid { grid-template-columns: 1fr; }
+  .vinyl { max-width: 320px; }
+
+  .guestbook__wall { columns: 280px 2; padding: 0 1rem; }
+
+  .reflection__window { display: none; }
+
+  /* Timeline: native horizontal scroll (works with touch, wheel+shift, trackpad, native scrollbar). */
+  .timeline__card { flex: 0 0 280px; }
+  .timeline__track {
+    padding: 0 1.4rem 1.25rem;
+    gap: 1.6rem;
+    scroll-padding-inline: 1.4rem;
+    touch-action: pan-x;
+  }
+
+  .modal__panel { padding: 1.75rem 1.4rem; }
+
+  .sticker-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .ticket { max-width: min(560px, 92vw); }
+}
+
+/* ---------- Mobile (up to 767px) ---------- */
+@media (max-width: 767px) {
+  :root {
+    --gap-md: 1.25rem;
+    --gap-lg: 2rem;
+    --gap-xl: 3.25rem;
+  }
+
+  body { font-size: 15px; padding-top: 58px; }
+
+  .nav-inner { min-height: 58px; gap: 0.75rem; }
+
+  .brand__name { font-size: 0.85rem; letter-spacing: 0.18em; }
+  .brand__mark { font-size: 0.7rem; }
+
+  /* Touch-target sizing — WCAG 2.2 min 44px. */
+  .music-toggle { width: 44px; height: 44px; font-size: 0.95rem; }
+  .nav-hamburger { width: 44px; height: 44px; }
+  .floating-back { width: 56px; height: 56px; }
+
+  .nav-progress { padding: 0.5rem 1rem; gap: 0.75rem; }
+  .nav-progress__label { font-size: 0.7rem; letter-spacing: 0.18em; }
+  .nav-progress__dot { width: 10px; height: 10px; }
+
+  .hero__title { font-size: clamp(2.6rem, 12vw, 4.4rem); letter-spacing: 0.04em; }
+  .hero__sub { font-size: 1rem; }
+  .hero__date { font-size: 0.6rem; letter-spacing: 0.4em; }
+
+  .btn { padding: 0.85rem 1.6rem; font-size: 0.7rem; letter-spacing: 0.3em; }
+
+  .lobby { padding-top: 5rem; }
+  .lobby__grid { grid-template-columns: 1fr; }
+
+  .placard { padding: 1.75rem 1.25rem; }
+
+  .gallery-intro { min-height: 78vh; padding: 4.5rem 1.25rem var(--gap-md); }
+
+  .gallery-chapter { padding: var(--gap-md) 0; }
+  .gallery-chapter__grid { gap: 1.25rem; }
+
+  .bookshelf {
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    padding: 1.4rem 1rem;
+  }
+  .book-spine { min-height: 200px; font-size: 0.62rem; }
+
+  .quote-reveal { padding: 1.4rem; min-height: 140px; }
+  .quote-reveal blockquote { font-size: 1.1rem; }
+
+  .cassette { aspect-ratio: 8/5; padding: 0.9rem; }
+
+  .guestbook__wall { columns: 1; padding: 0; }
+  .guestbook__form { padding: 1.4rem; }
+  .guestbook__row { grid-template-columns: 1fr; }
+  /* Prevent iOS auto-zoom on focus (input font must be ≥ 16px). */
+  .field input, .field textarea { font-size: 16px; width: 100%; }
+  .guestbook__card { padding: 1.25rem 1.1rem; }
+
+  .modal { padding: 1rem; }
+  .modal__panel { padding: 1.4rem 1.1rem; }
+
+  .ticket { grid-template-columns: 1fr; max-width: 92vw; }
+  .ticket::before { display: none; }
+  .ticket__right { border-top: 1px dashed rgba(27,42,70,0.4); padding-top: 1rem; }
+
+  .sticker-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .site-footer {
+    font-size: 0.65rem;
+    padding: 1.75rem 1rem 3.5rem;
+    text-align: center;
+  }
+  .site-footer__creators {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .site-footer__amp { display: none; }
+  .site-footer__credit { font-size: 0.68rem; }
+
+  .letter-paper__sheet { padding: 2rem 1.5rem; font-size: 1rem; }
+  .envelope { width: 90vw; }
+
+  /* Spotify player becomes a bottom sheet. */
+  .spotify-player {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+  }
+
+  /* Keep the floating back button clear of the Spotify sheet when it's open. */
+  .floating-back { bottom: 1rem; left: 1rem; }
+}
+
+/* ---------- Touch-only fallbacks ---------- */
+@media (hover: none) {
+  /* Hover-only reveals — surface them permanently on touch devices. */
+  .book-spine:hover { transform: rotate(180deg); }
+  .sticker:hover { transform: none; }
+  .placard:hover { transform: none; }
+}
+
+/* ---------- Motion reduce ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .dust, .petal, .cassette__reel, .vinyl, .hero__sunlight { display: none; }
+}

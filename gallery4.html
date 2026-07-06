@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery 04 · The Collection — Indigo Museum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="gallery4">
+  <main data-gallery="g4">
+    <section class="gallery-intro">
+      <div class="gallery-intro__inner">
+        <div class="gallery-intro__num" data-anim="fade-slow">Gallery&nbsp;04</div>
+        <h1 class="gallery-intro__title" data-anim="blur-reveal">The<br>Collection</h1>
+        <p class="gallery-intro__sub" data-anim="fade-slow" data-anim-delay="2">A museum of the things he loves.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="max-width:640px; margin:0 auto var(--gap-lg);" data-anim="rise">
+        <div class="eyebrow">Curated Objects</div>
+        <h2 class="h-section" style="margin: 1rem 0;">Click an object to look closer.</h2>
+      </div>
+
+      <div class="collection-grid" id="collectionGrid"></div>
+    </section>
+
+    <div class="modal" id="objectModal">
+      <div class="modal__panel">
+        <button class="modal__close" data-close>×</button>
+        <div class="eyebrow center" id="objModalEyebrow">Object Label</div>
+        <h2 class="h-section center" style="margin: 1rem 0 1.6rem;" id="objModalTitle">Title</h2>
+        <div class="center" id="objModalIcon" style="color: var(--navy); margin-bottom: 1rem;"></div>
+        <p style="margin: 0 auto;" id="objModalDesc"></p>
+      </div>
+    </div>
+
+    <section class="gallery-exit container">
+      <div class="eyebrow">End of Gallery 04</div>
+      <h2 class="h-section" style="margin: 1rem 0 2rem;">Continue to Gallery 05 · Music Of My Life</h2>
+      <button id="galleryExitBtn" class="btn">
+        <span>Collect stamp &amp; continue</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/stamps.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    const OBJECTS = [
+      { label: 'Books',    icon: 'books',   note: 'Well-loved spines',
+        desc: 'Fiction, philosophy, poetry — often marked in pencil, re-read.' },
+      { label: 'Museums',  icon: 'window',  note: 'Rooms that stay',
+        desc: 'The Louvre, the Getty, small provincial galleries — he wanders through them the way other people wander through mountains.' },
+      { label: 'Nature',   icon: 'window',  note: 'Trees, water, sky',
+        desc: 'A quiet life, mostly. He returns from tours to the Han river and to walks that end in silence.' },
+      { label: 'Plants',   icon: 'window',  note: 'Small green lives',
+        desc: 'A famously large collection at home. He learns their names, mist their leaves, worries about them on tour.' },
+      { label: 'Bicycle',  icon: 'window',  note: 'Long routes, slow',
+        desc: 'A way to move at the speed of thought. Country roads, riverside paths, no destination in particular.' },
+      { label: 'Camera',   icon: 'window',  note: 'Film, mostly',
+        desc: 'He photographs the world the way he reads it — attentively, without hurry, with a preference for grain.' },
+      { label: 'Art',      icon: 'book',    note: 'Painting, sculpture',
+        desc: 'A curator by taste. Anselm Kiefer, Yun Hyong-keun, quiet abstract expressionists, and objects that look like they were made by hand.' },
+      { label: 'Vinyl',    icon: 'piano',   note: 'Records, needle-down',
+        desc: 'The tactile ritual of it. Sleeve art, liner notes, the small pop before the first bar.' },
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('collectionGrid');
+      OBJECTS.forEach((o, i) => {
+        const item = document.createElement('button');
+        item.className = 'collection-item';
+        item.setAttribute('data-artwork', '');
+        item.setAttribute('data-anim', 'rise');
+        item.setAttribute('data-anim-delay', String(Math.min(i + 1, 6)));
+        item.innerHTML = `
+          <div class="collection-item__icon">${Stamps.iconSVG(o.icon, 80)}</div>
+          <div class="collection-item__label">${o.label}</div>
+          <div class="collection-item__note">${o.note}</div>
+        `;
+        item.addEventListener('click', () => openObject(o));
+        grid.appendChild(item);
+      });
+      Animation.observe();
+
+      const modal = document.getElementById('objectModal');
+      function openObject(o) {
+        document.getElementById('objModalEyebrow').textContent = o.note;
+        document.getElementById('objModalTitle').textContent = o.label;
+        document.getElementById('objModalDesc').textContent = o.desc;
+        document.getElementById('objModalIcon').innerHTML = Stamps.iconSVG(o.icon, 120);
+        modal.classList.add('open');
+      }
+      modal.querySelector('[data-close]').addEventListener('click', () => modal.classList.remove('open'));
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+
+      Gallery.initExit('g4', 'gallery5.html');
+    });
+  </script>
+</body>
+</html>

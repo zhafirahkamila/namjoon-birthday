@@ -1,0 +1,206 @@
+/* ==========================================================================
+   INDIGO MUSEUM — Animation library
+   Reusable keyframes and utility classes
+   ========================================================================== */
+
+/* ---------- Fade slow ---------- */
+@keyframes fade-slow {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+[data-anim="fade-slow"] {
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+[data-anim="fade-slow"].in { opacity: 1; }
+
+/* ---------- Blur reveal ---------- */
+[data-anim="blur-reveal"] {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(14px);
+  transition:
+    opacity 1.6s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 1.6s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 1.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+[data-anim="blur-reveal"].in {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* ---------- Scale in ---------- */
+[data-anim="scale-in"] {
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+[data-anim="scale-in"].in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- Rise up ---------- */
+[data-anim="rise"] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+[data-anim="rise"].in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for grouped items */
+[data-anim-delay="1"].in { transition-delay: 0.12s; }
+[data-anim-delay="2"].in { transition-delay: 0.24s; }
+[data-anim-delay="3"].in { transition-delay: 0.36s; }
+[data-anim-delay="4"].in { transition-delay: 0.48s; }
+[data-anim-delay="5"].in { transition-delay: 0.60s; }
+[data-anim-delay="6"].in { transition-delay: 0.72s; }
+
+/* ---------- Ink stamp thud ---------- */
+@keyframes ink-stamp-thud {
+  0%   { transform: translate(-50%, -60%) rotate(-20deg) scale(1.8); opacity: 0; }
+  40%  { transform: translate(-50%, 0) rotate(-8deg) scale(1.15); opacity: 0.4; }
+  70%  { transform: translate(-50%, 0) rotate(-8deg) scale(0.94); opacity: 1; }
+  100% { transform: translate(-50%, 0) rotate(-8deg) scale(1); opacity: 1; }
+}
+@keyframes ink-stamp-fade {
+  from { opacity: 1; }
+  to   { opacity: 0.5; }
+}
+@keyframes subtle-stamp-in {
+  from { transform: scale(1.4) rotate(-8deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+/* ---------- Door open ---------- */
+@keyframes door-swing-left {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(-105deg); }
+}
+@keyframes door-swing-right {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(105deg); }
+}
+
+/* ---------- Paper unfold ---------- */
+@keyframes paper-unfold {
+  0%   { transform: scaleY(0); opacity: 0.4; }
+  40%  { transform: scaleY(0.4); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ---------- QR scan sweep ---------- */
+@keyframes qr-scan {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(80px); }
+  100% { transform: translateY(0); }
+}
+
+/* ---------- Sunlight drift ---------- */
+@keyframes sunlight-drift {
+  0%   { transform: rotate(-3deg) translateY(0); opacity: 0.85; }
+  100% { transform: rotate(3deg) translateY(-10px); opacity: 1; }
+}
+
+/* ---------- Reel & vinyl spin ---------- */
+@keyframes reel-spin {
+  from { transform: rotate(0); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes vinyl-spin {
+  from { transform: rotate(0); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ---------- Room pulse (gallery map current room) ---------- */
+@keyframes room-pulse {
+  0%, 100% { fill: var(--gold); }
+  50% { fill: rgba(201,169,110,0.4); }
+}
+
+/* ---------- Dash animation (map path) ---------- */
+@keyframes dash {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -400; }
+}
+
+/* ---------- Dust float ---------- */
+@keyframes dust-float {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { transform: translate3d(var(--dx, 20px), -100vh, 0); opacity: 0; }
+}
+.dust.floating {
+  animation: dust-float var(--d, 18s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ---------- Petal fall (letter unlock) ---------- */
+@keyframes petal-fall {
+  0%   { transform: translate3d(0, -20vh, 0) rotate(0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate3d(var(--dx, 40px), 110vh, 0) rotate(var(--r, 720deg)); opacity: 0; }
+}
+.petal.falling { animation: petal-fall 5s ease-in forwards; }
+
+/* ---------- Slow zoom ambient (hero background subtle) ---------- */
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+.slow-zoom { animation: slow-zoom 22s ease-in-out infinite alternate; }
+
+/* ---------- Subtle floating (idle elements) ---------- */
+@keyframes float-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-idle { animation: float-idle 6s ease-in-out infinite; }
+
+/* ---------- Word-by-word letter reveal ---------- */
+.letter-line {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.letter-line.in { opacity: 1; transform: translateY(0); }
+
+/* ---------- Book flip (Gallery 2) — preserves parent rotate(180deg) ---------- */
+@keyframes book-lift {
+  0%   { transform: rotate(180deg) translateY(0) scale(1); }
+  40%  { transform: rotate(180deg) translateY(-16px) scale(1.04); box-shadow: 0 20px 30px -20px rgba(0,0,0,0.5); }
+  100% { transform: rotate(180deg) translateY(-8px) scale(1); }
+}
+.book-spine.active { animation: book-lift 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+/* ---------- Slow shimmer (gold accents) ---------- */
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.shimmer { animation: shimmer 4s ease-in-out infinite; }
+
+/* ---------- Nav dropdown item stagger ---------- */
+@keyframes nav-item-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav-dropdown.is-open .nav-dropdown__item {
+  animation: nav-item-in 0.35s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+.nav-dropdown.is-open li:nth-child(1) .nav-dropdown__item { animation-delay: 0.02s; }
+.nav-dropdown.is-open li:nth-child(2) .nav-dropdown__item { animation-delay: 0.05s; }
+.nav-dropdown.is-open li:nth-child(3) .nav-dropdown__item { animation-delay: 0.08s; }
+.nav-dropdown.is-open li:nth-child(4) .nav-dropdown__item { animation-delay: 0.11s; }
+.nav-dropdown.is-open li:nth-child(5) .nav-dropdown__item { animation-delay: 0.14s; }
+.nav-dropdown.is-open li:nth-child(6) .nav-dropdown__item { animation-delay: 0.17s; }
+.nav-dropdown.is-open li:nth-child(7) .nav-dropdown__item { animation-delay: 0.20s; }

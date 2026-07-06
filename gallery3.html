@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery 03 · Beyond The Stage — Indigo Museum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="gallery3">
+  <main data-gallery="g3">
+    <section class="gallery-intro">
+      <div class="gallery-intro__inner">
+        <div class="gallery-intro__num" data-anim="fade-slow">Gallery&nbsp;03</div>
+        <h1 class="gallery-intro__title" data-anim="blur-reveal">Beyond<br>The Stage</h1>
+        <p class="gallery-intro__sub" data-anim="fade-slow" data-anim-delay="2">Leader. Artist. Human.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="max-width:640px; margin:0 auto var(--gap-lg);" data-anim="rise">
+        <div class="eyebrow">A Timeline</div>
+        <h2 class="h-section" style="margin: 1rem 0;">Scroll through the years.</h2>
+      </div>
+    </section>
+
+    <section class="timeline" id="timeline">
+      <div class="timeline__track" id="timelineTrack">
+        <div class="timeline__card">
+          <div class="timeline__year">2010</div>
+          <h3>The audition</h3>
+          <p>Joins Big Hit as the first member of a group that does not yet have a name.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2013</div>
+          <h3>Debut</h3>
+          <p>BTS releases <em>2 Cool 4 Skool</em>. He is nineteen, and their leader.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2015</div>
+          <h3><em>RM</em></h3>
+          <p>First solo mixtape, released free. A statement of self, in his own voice.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2017</div>
+          <h3>Awards & arenas</h3>
+          <p>Billboard, sold-out stadiums, the world learns his name — but he keeps returning to books, to quiet.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2018</div>
+          <h3>UN General Assembly</h3>
+          <p>&ldquo;Speak yourself.&rdquo; The speech travels further than any album.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2019</div>
+          <h3><em>mono.</em></h3>
+          <p>A playlist for the seasons of solitude. Ambient, lyrical, honest.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2022</div>
+          <h3><em>Indigo</em></h3>
+          <p>A first solo album — described by him as the &ldquo;last archive of his twenties.&rdquo;</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2023</div>
+          <h3>Enlistment</h3>
+          <p>Begins mandatory military service. A pause in music, not a farewell.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">2025</div>
+          <h3>Homecoming</h3>
+          <p>Completes service. Returns to the studio, to the sea, to the members, to us.</p>
+        </div>
+        <div class="timeline__card">
+          <div class="timeline__year">Today</div>
+          <h3>Whatever is next.</h3>
+          <p>Still reading. Still writing. Still leading — quietly, unmistakably, home.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-exit container">
+      <div class="eyebrow">End of Gallery 03</div>
+      <h2 class="h-section" style="margin: 1rem 0 2rem;">Continue to Gallery 04 · The Collection</h2>
+      <button id="galleryExitBtn" class="btn">
+        <span>Collect stamp &amp; continue</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/stamps.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Gallery.initExit('g3', 'gallery4.html');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Letter — Indigo Museum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body data-page="letter">
+  <main>
+    <section class="letter-scene" id="letterScene">
+      <div class="letter-locked hidden" id="letterLocked">
+        <div class="eyebrow">The Letter Awaits</div>
+        <h1 class="h-display">Not yet.</h1>
+        <p style="color: var(--warm-gray); font-family: var(--font-serif); font-style: italic; font-size: 1.2rem;">
+          Please visit all seven galleries first. Your collected stamps will unlock the letter.
+        </p>
+        <a href="lobby.html" class="btn btn--ghost">Return to Lobby</a>
+      </div>
+
+      <div id="envelopeWrap" class="hidden">
+        <div class="eyebrow center" style="margin-bottom: 2rem;">Your Reward</div>
+        <div class="envelope" id="envelope">
+          <div class="envelope__flap"></div>
+          <div class="envelope__seal">RM</div>
+          <div class="envelope__hint">Click to open</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="letter-paper" id="letterPaper">
+      <button class="letter-paper__close" id="letterClose">Close</button>
+      <div class="letter-paper__sheet">
+        <p><em>To Namjoon,</em></p>
+        <p class="letter-line">Happy birthday.</p>
+        <p class="letter-line">Thank you for the books you carried, and the ones you left open for us.</p>
+        <p class="letter-line">Thank you for museums we would not have entered if not for your quiet enthusiasm — for the plants you named on livestreams, for the sea photographs, for the sentences that arrived exactly when we needed them.</p>
+        <p class="letter-line">Thank you for choosing to keep going. And for saying, so many times, that ordinary life is enough.</p>
+        <p class="letter-line">We wish you a soft day. A long walk. A book you love and a page you dog-ear. A quiet meal. A room full of the people who understand you.</p>
+        <p class="letter-line">And if it is not too much to ask — one more song, when you are ready.</p>
+        <p class="letter-paper__signoff">— ARMY, always.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/stamps.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const locked = document.getElementById('letterLocked');
+      const envelopeWrap = document.getElementById('envelopeWrap');
+      const envelope = document.getElementById('envelope');
+      const paper = document.getElementById('letterPaper');
+      const close = document.getElementById('letterClose');
+
+      if (!Stamps.allCollected()) {
+        locked.classList.remove('hidden');
+        return;
+      }
+
+      envelopeWrap.classList.remove('hidden');
+
+      envelope.addEventListener('click', () => {
+        envelope.classList.add('open');
+        setTimeout(() => {
+          paper.classList.add('open');
+          // Reveal lines one at a time
+          const lines = paper.querySelectorAll('.letter-line');
+          lines.forEach((line, i) => {
+            setTimeout(() => line.classList.add('in'), 800 + i * 700);
+          });
+          startPetals();
+        }, 900);
+      });
+
+      close.addEventListener('click', () => paper.classList.remove('open'));
+
+      function startPetals() {
+        for (let i = 0; i < 24; i++) {
+          setTimeout(() => spawnPetal(), i * 220);
+        }
+      }
+      function spawnPetal() {
+        const p = document.createElement('span');
+        p.className = 'petal falling';
+        p.style.left = (Math.random() * 100) + 'vw';
+        p.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+        p.style.setProperty('--r', (400 + Math.random() * 600) + 'deg');
+        // vary color slightly
+        const colors = ['#C9A96E', '#e2b980', '#a53b2a', '#23395D'];
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 5200);
+      }
+    });
+  </script>
+</body>
+</html>
