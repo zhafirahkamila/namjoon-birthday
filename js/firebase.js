@@ -1,14 +1,3 @@
-/* ==========================================================================
-   INDIGO MUSEUM — firebase.js
-   Firebase Web SDK v11 (Modular) — initialization + Firestore handle
-   ----------------------------------------------------------------------------
-   REPLACE the placeholder firebaseConfig object below with your project's
-   credentials from the Firebase Console (Project settings → General → Your
-   apps → Web app → Config). Do NOT commit real API keys of a project you
-   want kept private — for public GitHub Pages sites, Firebase security is
-   enforced by firestore.rules, not by hiding the config.
-   ========================================================================== */
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js';
 import {
   getFirestore,
