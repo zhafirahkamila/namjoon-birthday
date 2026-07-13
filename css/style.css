@@ -633,8 +633,6 @@ body.nav-drawer-open .mobile-drawer__panel { transform: translateX(0); }
   position: relative;
   z-index: 1;
   padding: 2.25rem 2rem 1.75rem;
-  border-top: 1px solid rgba(110, 100, 90, 0.35);
-  margin-top: var(--gap-lg);
   color: var(--warm-gray);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
